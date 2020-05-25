@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "NULS 浏览器插件",
+  "description": "NULS浏览器插件",
+  "version": "0.0.1",
+  // 图标，一般偷懒全部用一个尺寸的也没问题
+  "icons":{
+    "16":"img/icon.png",
+    "48":"img/icon.png",
+    "128":"img/icon.png"
+  },
+  // 浏览器右上角图标设置，browser_action、page_action、app必须三选一
+  "options_page": "options.html",
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

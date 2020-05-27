@@ -14,7 +14,7 @@ chromeName.forEach(name => {
   };
 });
 
-const plugins =
+let plugins =
   process.env.NODE_ENV === "production" ? [{
     from: path.resolve("src/manifest.production.json"),
     to: `${path.resolve("dist")}/manifest.json`
@@ -22,6 +22,10 @@ const plugins =
     from: path.resolve("src/manifest.development.json"),
     to: `${path.resolve("dist")}/manifest.json`
   }];
+plugins.push({
+  from: path.resolve("src/assets/img/icon.png"),
+  to: `${path.resolve("dist")}/img/icon.png`
+});
 
 module.exports = {
   pages: pagesObj,

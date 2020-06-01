@@ -1,0 +1,321 @@
+@import "style";
+
+* html .clearfix {
+  height: 1%
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body, div, dl, dt, dd, ul, ol, li, p, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea {
+  margin: 0;
+  padding: 0;
+  font-family: @fontF, sans-serif;
+  font-weight: 400
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+fieldset, img {
+  border: 0;
+}
+
+address, caption, cite, code, dfn, em, strong, th, var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+q:before, q:after {
+  content: ' '
+}
+
+a {
+  text-decoration: none;
+  color: @Fcolour;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a:hover {
+  text-decoration: none
+}
+
+a:focus {
+  outline: none;
+}
+
+._tl {
+  text-align: left;
+}
+
+._tc {
+  text-align: center;
+}
+
+._tr {
+  text-align: right;
+}
+
+u {
+  text-decoration: none;
+}
+
+._td {
+  text-decoration: none;
+  border-bottom: 1px solid @Ccolour;
+}
+
+._fw {
+  font-weight: bold
+}
+
+._fl {
+  float: left;
+  display: inline;
+}
+
+._fr {
+  float: right;
+  display: inline;
+}
+
+._cb {
+  clear: both;
+}
+
+._hidden {
+  visibility: hidden;
+}
+
+._none {
+  display: none;
+}
+
+._font10 {
+  font-size: 10px;
+}
+
+._font12 {
+  font-size: 12px;
+}
+
+._font14 {
+  font-size: 14px;
+}
+
+._font16 {
+  font-size: 16px;
+}
+
+._font18 {
+  font-size: 18px;
+}
+
+._font20 {
+  font-size: 20px;
+}
+
+//小标题
+._title {
+  font-size: 30px;
+  line-height: 48px;
+  @media screen and (max-width: 1000px) {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 2.4rem;
+  }
+}
+
+//副标题
+._sub_title {
+  font-size: 24px;
+  line-height: 36px;
+  @media screen and (max-width: 1000px) {
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1.8rem;
+  }
+}
+
+//正文
+._info {
+  font-size: 20px;
+  line-height: 36px;
+  @media screen and (max-width: 1000px) {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+  }
+}
+
+//辅助文字
+._sub_info {
+  font-size: 14px;
+  line-height: 30px;
+  @media screen and (max-width: 1000px) {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+  }
+}
+
+._w1400 {
+  width: 1400px;
+  margin: 0 auto;
+  @media screen and (max-width: 1200px) {
+    width: 1024px;
+  }
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
+}
+
+._w630 {
+  width: 630px;
+  margin: 0 auto;
+}
+
+._fW400 {
+  font-weight: 400;
+}
+
+._fW600 {
+  font-weight: 600;
+}
+
+._fCN {
+  color: #06ba63;
+}
+
+._flan {
+  color: @Ccolour;
+}
+
+._fwhite {
+  color: @Bcolour;
+}
+
+._fred {
+  color: #db4355;
+}
+
+._yellow {
+  color: #edb00c;
+}
+
+._gray {
+  color: #8f93b4;
+}
+
+._transparent {
+  color: transparent !important;
+}
+
+._bg-white {
+  background-color: @Bcolour;
+}
+
+._bg-gray {
+  background-color: @Bcolour2;
+}
+
+/**可点击的手指样式**/
+._click {
+  color: @Ccolour;
+  cursor: pointer;
+}
+
+._clicks {
+  cursor: pointer;
+}
+
+/**超长显示...**/
+._overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/**超长自动换行**/
+._wordwrap {
+  word-wrap: break-word;
+}
+
+/**英文首字母大写**/
+._capitalize {
+  text-transform: Capitalize;
+}
+
+/**英文大写**/
+._uppercase {
+  text-transform: Uppercase;
+}
+
+//阴影
+._shadow {
+  -moz-box-shadow: 4px 1px 20px #8A8A8A;
+  -webkit-box-shadow: 4px 1px 20px #8A8A8A;
+  box-shadow: 4px 1px 20px #8A8A8A;
+}
+
+._m_20 {
+  margin: 20px
+}
+
+._mt_20 {
+  margin-top: 20px;
+}
+
+._ml_20 {
+  margin-left: 20px
+}
+
+._mb_20 {
+  margin-bottom: 20px;
+}
+
+._p_20 {
+  padding: 20px
+}
+
+._pt_20 {
+  padding-top: 20px;
+}
+
+._pl_20 {
+  padding-left: 20px
+}
+
+._pb_20 {
+  padding-bottom: 20px;
+}
+
+._pr_20 {
+  padding-right: 20px
+}
+
+._scroll {
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #141726;
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 2px;
+    background-color: #141726;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-image: -webkit-gradient(linear, 20% 0%, 20% 0%, from(#7d7f93), to(#1c1f30), color-stop(.2, #7d7f93))
+  }
+}
+
+

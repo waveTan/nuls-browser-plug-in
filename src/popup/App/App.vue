@@ -8,23 +8,40 @@
       <div v-show="setDrawer" class="transition-box">.el-fade-in-linear</div>
     </transition>
     <div class="p_main_middle">
-      <div class="address_info">
-        <div class="address">
-          地址：tNULSeBaMvH8TmMZUPQKvc19qeLrD7oN643aBL(bolang)
-        </div>
-        <div class="assets">
-          <span>总额：5000.00</span>
-          <span>锁定：5000.00</span>
-          <span>可用：5000.00</span>
-        </div>
-      </div>
-      <div class="signature_list">
-        <h6>签名列表</h6>
 
+      <!--创建/导入账户-->
+      <div v-if="!addressInfo.address" class="home_new_address">
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane label="Keystore导入" name="first">用户管理</el-tab-pane>
+          <el-tab-pane label="私钥导入" name="second">
+            <NewAddress>
+            </NewAddress>
+          </el-tab-pane>
+          <el-tab-pane label="创建账户" name="third">角色管理</el-tab-pane>
+        </el-tabs>
       </div>
-      <div class="transactions">
-        <h6>交易记录</h6>
+
+      <!--首页信息-->
+      <div v-if="addressInfo.address">
+        <div class="address_info" v-show="false">
+          <div class="address">
+            地址：tNULSeBaMvH8TmMZUPQKvc19qeLrD7oN643aBL(bolang)
+          </div>
+          <div class="assets">
+            <span>总额：5000.00</span>
+            <span>锁定：5000.00</span>
+            <span>可用：5000.00</span>
+          </div>
+        </div>
+        <div class="signature_list">
+          <h6>签名列表</h6>
+
+        </div>
+        <div class="transactions">
+          <h6>交易记录</h6>
+        </div>
       </div>
+
     </div>
     <div class="p_main_bottom">
       <div class="_fl">
@@ -36,10 +53,16 @@
 </template>
 
 <script>
+  import NewAddress from '@/components/NewAddress.vue'
+
   export default {
     data() {
       return {
         setDrawer: false,
+
+        addressInfo: {},//账户信息
+
+        activeName: 'second',
 
         addressList: [
           {
@@ -86,8 +109,12 @@
     },
     watch: {},
     computed: {},
-    components: {},
-    methods: {}
+    components: {NewAddress},
+    methods: {
+      handleClick(tab, event) {
+        console.log(tab, event);
+      },
+    }
   }
 </script>
 

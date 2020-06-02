@@ -1,30 +1,30 @@
 <template>
-  <div class="backups-address bg-gray">
+  <div class="_backups-address bg-gray">
     <div class="bg-white">
       <h3 class="title tc">{{$t('backupsAddress.backupsAddress0')}}</h3>
     </div>
     <div class="bg-white w1200">
       <div class="address w630">
-        <p class="info mt_20 mb_20 pt_20">
-          {{$t('backupsAddress.backupsAddress1')}}
-          <span class="yellow">{{accountAddress.address}}</span>
-           &nbsp;<i class="el-icon-document-copy click" @click="copy(accountAddress.address)"></i>
-        </p>
+        {{$t('backupsAddress.backupsAddress1')}}
+        <span class="yellow">{{accountAddress.address}}</span>
+        &nbsp;<i class="el-icon-document-copy _click" @click="copy(accountAddress.address)"></i>
       </div>
       <div class="tips bg-gray w630">
-        <p class="sub_info pl_20"><i></i> {{$t('backupsAddress.backupsAddress2')}}</p>
-        <p class="sub_info pl_20"><i></i> {{$t('backupsAddress.backupsAddress3')}}</p>
+        <p class="sub_info"><i></i> {{$t('backupsAddress.backupsAddress2')}}</p>
+        <p class="sub_info"><i></i> {{$t('backupsAddress.backupsAddress3')}}</p>
       </div>
 
-      <div class="w630 tc btn-next pb_20">
-        <div class="mt_20">
-          <el-button type="success " @click="backupsKeyStore">{{$t('backupsAddress.backupsAddress41')}}</el-button>
+      <div class="w630 _tc  _pb_20">
+        <div class="_mt_20">
+          <el-button type="success" size="small" @click="backupsKeyStore">{{$t('backupsAddress.backupsAddress41')}}
+          </el-button>
         </div>
-        <div class="mt_20">
-          <el-button type="success" @click="backupsKey">{{$t('backupsAddress.backupsAddress4')}}</el-button>
+        <div class="_mt_20">
+          <el-button type="success" size="small" @click="backupsKey">{{$t('backupsAddress.backupsAddress4')}}
+          </el-button>
         </div>
-        <div class="mt_20 mb_20">
-          <el-button @click="toUrl('home')"> {{$t('backupsAddress.backupsAddress5')}}</el-button>
+        <div class="_mt_20 _mb_20">
+          <el-button size="small" @click="toUrl('home')"> {{$t('backupsAddress.backupsAddress5')}}</el-button>
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
         {{accountAddress.pri}}
       </p>
       <span slot="footer" class="dialog-footer">
-        <el-button type="success" @click="copy(accountAddress.pri)">{{$t('public.copy')}}</el-button>
+        <el-button type="success" size="small" @click="copy(accountAddress.pri)">{{$t('public.copy')}}</el-button>
       </span>
     </el-dialog>
   </div>
@@ -136,57 +136,42 @@
 </script>
 
 <style lang="less">
-  @import "./../../assets/css/style";
+  //@import "./../../assets/css/style";
 
-  .backups-address {
+  ._backups-address {
     .bg-white {
       .title {
-        margin: 20px auto 10px;
-        font-size: 30px;
-        @media screen and (max-width: 1024px) {
-          margin: 0 auto;
-          line-height: 4rem;
-        }
+        margin: 0 auto;
+        line-height: 4rem;
+        text-align: center;
+        font-size: 1.5rem;
       }
     }
-    .tab {
-      .address {
-        margin: 20px auto 0;
-        font-size: 18px;
-        @media screen and (max-width: 1024px) {
-          margin: 1rem 0 0 1rem;
-          font-size: 0.8rem;
-        }
-      }
-      .tips {
-        margin: 40px auto;
-        padding: 20px 30px;
-        @media screen and (max-width: 1024px) {
-          padding: 1rem 0.8rem;
-          width: 100%;
-        }
-        p {
-          line-height: 24px;
-          @media screen and (max-width: 1024px) {
-            font-size: 0.7rem;
-            word-wrap: break-word;
-          }
-          i {
-            width: 5px;
-            height: 5px;
-            display: block;
-            float: left;
-            margin: 9px 10px 0 0;
-            border-radius: 5px;
-            background: #000000;
-          }
-        }
-      }
+    .address {
+      margin: 0.5rem 0 0.5rem 0.25rem;
+      font-size: 0.8rem;
     }
-    .btn-next {
-      @media screen and (max-width: 1024px) {
-        width: 100%;
+    .tips {
+      padding: 0.5rem 0.3rem;
+      margin: 0 auto;
+      width: 96%;
+      background-color: #f9fafd;
+      font-size: 0.7rem;
+      line-height: 1.4rem;
+      word-wrap: break-word;
+      .sub_info {
+        padding: 0.1rem;
+        i {
+          width: 5px;
+          height: 5px;
+          display: block;
+          float: left;
+          margin: 9px 10px 0 0;
+          border-radius: 5px;
+          background: #000000;
+        }
       }
+
     }
   }
 

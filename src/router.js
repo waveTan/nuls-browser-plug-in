@@ -27,26 +27,16 @@ export default new Router({
       name: 'newAddress',
       component: resolve => require(['./popup/App/views/user/NewAddress.vue'], resolve)
     },
-    /*{
-      path: '/page2',
-      name: 'page2',
-      component: resolve => require(['@/views/page2.vue'], resolve)
-    },
-    {
-      path: '/NewAddress',
-      name: 'newAddress',
-      component: resolve => require(['@/views/user/NewAddress.vue'], resolve)
-    },
     {
       path: '/BackupsAddress',
       name: 'backupsAddress',
-      component: resolve => require(['@/views/user/BackupsAddress.vue'], resolve)
+      component: resolve => require(['./popup/App/views/user/BackupsAddress.vue'], resolve)
     },
     {
       path: '/User',
       name: 'user',
-      component: resolve => require(['@/views/user/User.vue'], resolve)
-    }*/
+      component: resolve => require(['./popup/App/views/user/User.vue'], resolve)
+    }
 
   ]
 })

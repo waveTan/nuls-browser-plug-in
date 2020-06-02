@@ -55,7 +55,7 @@ const cn = {
 
   "backupsAddress": {
     "backupsAddress0": "备份",
-    "backupsAddress1": "您的地址: ",
+    "backupsAddress1": "地址: ",
     "backupsAddress2": "请设置密码用以导入账户、转账、参与共识等重要行为验证",
     "backupsAddress3": "请认真保存钱包密码，NULS钱包不存储密码，也无法帮您找回，请务必牢记",
     "backupsAddress41": "备份KeyStore",

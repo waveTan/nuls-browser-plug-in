@@ -53,7 +53,7 @@ const en = {
 
   "backupsAddress": {
     "backupsAddress0": "Backup",
-    "backupsAddress1": "Your address: ",
+    "backupsAddress1": "Address: ",
     "backupsAddress2": "Please set password to import account, transfer money, participate in consensus and other important behavior verification",
     "backupsAddress3": "Please carefully save your wallet password. NULS wallet does not store your password and cannot be retrieved for you. Please remember this",
     "backupsAddress41": "Backup Keystore",

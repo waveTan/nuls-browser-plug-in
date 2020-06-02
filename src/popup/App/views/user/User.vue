@@ -1,16 +1,38 @@
 <template>
-  <div class="account w1200">
-    <div class="address">
+  <div class="_account w1200">
+    <!--<div class="address">
       <span class="font16">{{$t('public.address')}}: {{accountInfo.address}}</span>
       <font class="fr font16">{{$t('public.balance')}}: {{accountInfo.balance}}<em class="fCN"> NULS</em></font>
+    </div>-->
+
+    <div class="account_list">
+      <el-table :data="tableData" stripe style="width: 100%">
+        <el-table-column prop="date" label="账户" width="100" align="center">
+        </el-table-column>
+        <el-table-column prop="name" label="可用" width="100" align="center">
+        </el-table-column>
+        <el-table-column prop="address" label="助记词" width="80" align="center">
+        </el-table-column>
+        <el-table-column label="操作" min-width="60" align="center">
+          <template slot-scope="scope">
+            <i class="el-icon-star-on _click" title="当前默认"></i>
+            <i class="el-icon-lock _click" title="记住密码"></i>
+            <i class="el-icon-delete _click" title="移除账户"></i>
+          </template>
+        </el-table-column>
+      </el-table>
+      <div class="new_account _tc">
+        <el-button type="success" size="small" @click="toUrl('newAddress','',0)">添加账户</el-button>
+      </div>
     </div>
+
     <Password ref="password" @passwordSubmit="passSubmit">
     </Password>
   </div>
 </template>
 
 <script>
-  import Password from '@/components/PasswordBar'
+  import Password from './../../../../components/PasswordBar'
   import {divisionDecimals, connect} from '@/api/util'
   import {getAddressInfoByAddress} from '@/api/requestData'
 
@@ -18,6 +40,12 @@
     data() {
       return {
         accountInfo: JSON.parse(localStorage.getItem('accountInfo')),//账户信息
+        tableData: [
+          {date: 'tNULS...65uQy', name: '88888.888', address: 'wave'},
+          {date: 'tNULS...65uQy', name: '88888.888', address: 'wave'},
+          {date: 'tNULS...65uQy', name: '88888.888', address: 'wave'},
+          {date: 'tNULS...65uQy', name: '88888.888', address: 'wave'},
+        ]
       }
     },
     created() {
@@ -74,10 +102,32 @@
 </script>
 
 <style lang="less">
-  @import "./../../assets/css/style";
+  ._account {
+    margin: 1.5rem auto 0;
+    .account_list {
+      .el-table {
+        th {
+          background-color: #f5f6f9;
+        }
+        td, th {
+          padding: 5px 0;
+          .cell {
+            line-height: 20px;
+            font-size: 12px;
+            padding: 0 2px;
+            i {
+              margin: 0 5px 0 0;
+              font-size: 14px;
+            }
+          }
+        }
 
-  .account {
-    margin: 30px auto 0;
+      }
+      .new_account {
+        margin: 1rem auto;
+      }
+    }
+
     .address {
       span {
         color: #17202e;
@@ -97,6 +147,4 @@
       }
     }
   }
-
-
 </style>

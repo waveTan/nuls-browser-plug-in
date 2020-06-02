@@ -1,62 +1,60 @@
 <template>
-  <div class="import-address bg-gray">
-    <div class="bg-white"></div>
-    <div style="">
-      <el-tabs v-model="activeName" @tab-click="handleClick" class="new_import w1200">
-        <el-tab-pane :label="$t('newAddress.newAddress0')" name="keystoreImport">
-          <div class="tc upload_keystore">
-            <el-upload drag class="upload" action="localhost" accept='.keystore' v-if="!isfileReader"
-                       :before-upload="handleUpload"
-                       :multiple="false"
-                       :limit="1">
-              <i class="el-icon-upload"></i>
-              <div class="el-upload__text">{{$t('newAddress.newAddress3')}}<em>{{$t('newAddress.newAddress4')}}</em>
-              </div>
-            </el-upload>
-            <div v-else>{{$t('newAddress.newAddress5')}}</div>
-          </div>
-        </el-tab-pane>
-        <el-tab-pane :label="$t('newAddress.newAddress1')" name="keyImport">
-          <div class="bg-white w1200 mt_100">
-            <el-form :model="importForm" :rules="importRules" ref="importForm" status-icon class="import-form w630">
-              <el-form-item :label="$t('newAddress.newAddress6')" prop="keys">
-                <el-input type="textarea" v-model.trim="importForm.keys" autocomplete="off"></el-input>
-              </el-form-item>
-              <el-form-item :label="$t('newAddress.newAddress7')" prop="pass">
-                <el-input v-model="importForm.pass" type="password" autocomplete="off"></el-input>
-              </el-form-item>
-              <el-form-item :label="$t('newAddress.newAddress8')" prop="checkPass">
-                <el-input v-model="importForm.checkPass" type="password" autocomplete="off"></el-input>
-              </el-form-item>
-              <el-form-item class="form-bnt mb_100">
-                <el-button type="success" @click="keyImport('importForm')">{{$t('newAddress.newAddress9')}}</el-button>
-              </el-form-item>
-            </el-form>
-          </div>
-        </el-tab-pane>
-        <el-tab-pane :label="$t('newAddress.newAddress2')" name="newAddress">
-          <el-form :model="newAddressForm" status-icon :rules="newAddressRules" ref="newAddressForm"
-                   class="new_address w630">
+  <div class="_import-address bg-gray">
+    <el-tabs v-model="activeName" @tab-click="handleClick" class="new_import w1200">
+      <el-tab-pane :label="$t('newAddress.newAddress0')" name="keystoreImport">
+        <div class="tc upload_keystore">
+          <el-upload drag class="upload" action="localhost" accept='.keystore' v-if="!isfileReader"
+                     :before-upload="handleUpload"
+                     :multiple="false"
+                     :limit="1">
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">{{$t('newAddress.newAddress3')}}<em>{{$t('newAddress.newAddress4')}}</em>
+            </div>
+          </el-upload>
+          <div v-else>{{$t('newAddress.newAddress5')}}</div>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane :label="$t('newAddress.newAddress1')" name="keyImport">
+        <div class="bg-white w1200 mt_100">
+          <el-form :model="importForm" :rules="importRules" ref="importForm" status-icon class="import-form w630">
+            <el-form-item :label="$t('newAddress.newAddress6')" prop="keys">
+              <el-input type="textarea" v-model.trim="importForm.keys" autocomplete="off"></el-input>
+            </el-form-item>
             <el-form-item :label="$t('newAddress.newAddress7')" prop="pass">
-              <el-input type="password" v-model="newAddressForm.pass" autocomplete="off"></el-input>
+              <el-input v-model="importForm.pass" type="password" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item :label="$t('newAddress.newAddress8')" prop="checkPass">
-              <el-input type="password" v-model="newAddressForm.checkPass" autocomplete="off"></el-input>
+              <el-input v-model="importForm.checkPass" type="password" autocomplete="off"></el-input>
             </el-form-item>
-            <el-form-item label="" prop="agreement" class="agreement">
-              <el-checkbox-group v-model="newAddressForm.agreement">
-                <el-checkbox :label="$t('tips.tips10')" name="agreement"></el-checkbox>
-              </el-checkbox-group>
-            </el-form-item>
-            <el-form-item class="form-bnt">
-              <el-button type="success" @click="newAddressSubmitForm('newAddressForm')">
-                {{$t('newAddress.newAddress2')}}
+            <el-form-item class="form-bnt mb_100 _tc">
+              <el-button type="success" size="small" @click="keyImport('importForm')">{{$t('newAddress.newAddress9')}}
               </el-button>
             </el-form-item>
           </el-form>
-        </el-tab-pane>
-      </el-tabs>
-    </div>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane :label="$t('newAddress.newAddress2')" name="newAddress">
+        <el-form :model="newAddressForm" status-icon :rules="newAddressRules" ref="newAddressForm"
+                 class="new_address w630">
+          <el-form-item :label="$t('newAddress.newAddress7')" prop="pass">
+            <el-input type="password" v-model="newAddressForm.pass" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item :label="$t('newAddress.newAddress8')" prop="checkPass">
+            <el-input type="password" v-model="newAddressForm.checkPass" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="" prop="agreement" class="agreement" v-show="false">
+            <el-checkbox-group v-model="newAddressForm.agreement">
+              <el-checkbox :label="$t('tips.tips10')" name="agreement"></el-checkbox>
+            </el-checkbox-group>
+          </el-form-item>
+          <el-form-item class="form-bnt _tc">
+            <el-button type="success" size="small" @click="newAddressSubmitForm('newAddressForm')">
+              {{$t('newAddress.newAddress2')}}
+            </el-button>
+          </el-form-item>
+        </el-form>
+      </el-tab-pane>
+    </el-tabs>
     <Password ref="password" @passwordSubmit="keystoreImportPassSubmit">
     </Password>
   </div>
@@ -64,9 +62,9 @@
 
 <script>
   import nuls from 'nuls-sdk-js'
-  import {API_CHAIN_ID, API_PREFIX} from './../../../../config'
-  import {getAddressInfoByAddress} from './../../../../../api/requestData'
-  import {passwordVerification, connect} from './../../../../../api/util'
+  import {CHAIN_INFO} from './../../../../config'
+  import {getAddressInfoByAddress} from './../../../../api/requestData'
+  import {passwordVerification, connect} from './../../../../api/util'
   import Password from './../../../../components/PasswordBar'
 
   export default {
@@ -157,7 +155,7 @@
         newAddressForm: {
           pass: '',
           checkPass: '',
-          agreement: false,
+          agreement: true,
         },
         newAddressRules: {
           pass: [
@@ -177,6 +175,13 @@
       Password
     },
     created() {
+      let IS_DEV = process.env.NODE_ENV !== "production";
+      if (IS_DEV) {
+        this.importForm.pass = 'nuls123456';
+        this.importForm.checkPass = 'nuls123456';
+        this.newAddressForm.pass = 'nuls123456';
+        this.newAddressForm.checkPass = 'nuls123456';
+      }
     },
     methods: {
 
@@ -257,7 +262,7 @@
       keyImport(formName) {
         this.$refs[formName].validate(async (valid) => {
           if (valid) {
-            const keyAddressInfo = nuls.importByKey(API_CHAIN_ID, this.importForm.keys, this.importForm.pass, API_PREFIX);
+            const keyAddressInfo = nuls.importByKey(CHAIN_INFO.chainId, this.importForm.keys, this.importForm.pass, CHAIN_INFO.prefix);
             let addressInfo = await getAddressInfoByAddress(keyAddressInfo.address);
             //console.log(addressInfo);
             if (addressInfo.success) {
@@ -287,7 +292,7 @@
       newAddressSubmitForm(formName) {
         this.$refs[formName].validate(async (valid) => {
           if (valid) {
-            this.newAddressInfo = nuls.newAddress(API_CHAIN_ID, this.newAddressForm.pass, API_PREFIX);
+            this.newAddressInfo = nuls.newAddress(CHAIN_INFO.chainId, this.newAddressForm.pass, CHAIN_INFO.prefix);
             let addressInfo = await getAddressInfoByAddress(this.newAddressInfo.address);
             if (addressInfo.success) {
               let newAdressInfo = {...this.newAddressInfo, ...addressInfo.data};
@@ -324,12 +329,18 @@
 </script>
 
 <style lang="less">
-  .import-address {
-    .bg-white {
-      min-height: 130px;
+  ._import-address {
+    .el-form {
+      .el-form-item {
+        margin: 0 0 1rem 0;
+        .el-form-item__label {
+          font-size: 0.7rem;
+          line-height: 1.5rem;
+        }
+      }
     }
     .new_import {
-      margin: -90px auto 100px;
+      margin: 1rem auto 2rem;
       .el-tabs__header {
         margin: 0;
         .el-tabs__nav-wrap {
@@ -346,9 +357,12 @@
             }
             .el-tabs__item {
               text-align: center;
-              padding: 0 25px;
-              margin: 10px 20px 20px;
+              padding: 0 0.5rem;
+              margin: 0.5rem 0.2rem 1rem 0.2rem;
               border-radius: 4px;
+              height: 1.8rem;
+              line-height: 1.8rem;
+              font-size: 0.7rem;
               @media screen and (max-width: 1024px) {
                 padding: 0 0.5rem;
               }
@@ -356,6 +370,7 @@
                 background: linear-gradient(to right, #4ef16a, #0ede94);
                 color: #FFFFFF;
               }
+
             }
             .is-active {
               background: linear-gradient(to right, #4ef16a, #0ede94);
@@ -367,8 +382,15 @@
       .el-tabs__content {
         background-color: #FFFFFF;
         .upload_keystore {
-          padding: 100px 0 100px 0;
+          padding: 5rem 0 5rem 0;
           border: 1px solid #E4E7ED;
+          .upload {
+            width: 95%;
+            margin: 0 auto;
+            .el-upload-dragger {
+              width: 340px;
+            }
+          }
         }
         .import-form {
           margin: 60px auto 0;

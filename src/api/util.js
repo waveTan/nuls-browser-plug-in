@@ -1,6 +1,6 @@
 import nuls from 'nuls-sdk-js'
 import {BigNumber} from 'bignumber.js'
-import {API_CHAIN_ID, API_PREFIX} from '@/config'
+import {CHAIN_INFO} from '@/config'
 import copy from 'copy-to-clipboard'
 
 /**
@@ -94,7 +94,7 @@ export const copys = (value) => copy(value);
 export function passwordVerification(accountInfo, password) {
   let aesPri = accountInfo.aesPri ? accountInfo.aesPri : accountInfo.encryptedPrivateKey;
   const pri = nuls.decrypteOfAES(aesPri, password);
-  const newAddressInfo = nuls.importByKey(API_CHAIN_ID, pri, password, API_PREFIX);
+  const newAddressInfo = nuls.importByKey(CHAIN_INFO.chainId, pri, password, CHAIN_INFO.prefix);
   if (newAddressInfo.address === accountInfo.address) {
     return {success: true, pri: pri, pub: accountInfo.pub, address: accountInfo.address,aesPri:newAddressInfo.aesPri};
   } else {
@@ -107,7 +107,7 @@ export function passwordVerification(accountInfo, password) {
  * @returns {number}
  */
 export function chainID() {
-  return API_CHAIN_ID
+  return CHAIN_INFO.chainId
 }
 
 /**

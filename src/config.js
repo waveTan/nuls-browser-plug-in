@@ -5,7 +5,7 @@
  */
 "use strict";
 //开发模式
-export const IS_DEV = process.env.NODE_ENV !== 'production';
+export const IS_DEV = process.env.NODE_ENV === 'production';
 //链信息
 export const CHAIN_INFO = IS_DEV ? {chainId: 1, assetsId: 1, prefix: 'NULS'} : {
   chainId: 2,

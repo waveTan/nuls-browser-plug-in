@@ -64,7 +64,7 @@
   import nuls from 'nuls-sdk-js'
   import {CHAIN_INFO} from './../../../../config'
   import {getAddressInfoByAddress} from './../../../../api/requestData'
-  import {passwordVerification, connect} from './../../../../api/util'
+  import {passwordVerification, connect,localStorageByAddressInfo} from './../../../../api/util'
   import Password from './../../../../components/PasswordBar'
 
   export default {
@@ -239,8 +239,8 @@
           let addressInfo = await getAddressInfoByAddress(this.keystoreInfo.address);
           if (addressInfo.success) {
             let newAddressInfo = {...this.keystoreInfo, ...addressInfo.data};
-            localStorage.setItem('accountInfo', JSON.stringify(newAddressInfo));
-            this.toUrl('backupsAddress');
+            localStorageByAddressInfo(newAddressInfo);
+            this.toUrl('backupsAddress', newAddressInfo.address, 0);
           } else {
             this.$message({
               message: this.$t('tips.tips3') + addressInfo.data.error.message,
@@ -267,8 +267,8 @@
             //console.log(addressInfo);
             if (addressInfo.success) {
               let newAddressInfo = {...keyAddressInfo, ...addressInfo.data};
-              localStorage.setItem('accountInfo', JSON.stringify(newAddressInfo));
-              this.toUrl('backupsAddress');
+              localStorageByAddressInfo(newAddressInfo);
+              this.toUrl('backupsAddress', newAddressInfo.address, 0);
             } else {
               this.$message({
                 message: this.$t('tips.tips5') + addressInfo.data.error.message,
@@ -296,8 +296,9 @@
             let addressInfo = await getAddressInfoByAddress(this.newAddressInfo.address);
             if (addressInfo.success) {
               let newAdressInfo = {...this.newAddressInfo, ...addressInfo.data};
-              localStorage.setItem('accountInfo', JSON.stringify(newAdressInfo));
-              this.toUrl('backupsAddress');
+              localStorageByAddressInfo(newAdressInfo);
+              //localStorage.setItem('accountInfo', JSON.stringify(newAdressInfo));
+              this.toUrl('backupsAddress', newAdressInfo.address, 0);
             } else {
               this.$message({
                 message: this.$t('tips.tips6') + addressInfo.data.error.message,

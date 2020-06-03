@@ -66,6 +66,9 @@ export function Division(nu, arg) {
  * 数字除以精度系数
  */
 export function divisionDecimals(nu, decimals = 8) {
+  if (nu === 0) {
+    return 0;
+  }
   let newNu = new BigNumber(Division(nu, Power(decimals)).toString());
   return newNu.toFormat().replace(/[,]/g, '');
 }
@@ -96,7 +99,7 @@ export function passwordVerification(accountInfo, password) {
   const pri = nuls.decrypteOfAES(aesPri, password);
   const newAddressInfo = nuls.importByKey(CHAIN_INFO.chainId, pri, password, CHAIN_INFO.prefix);
   if (newAddressInfo.address === accountInfo.address) {
-    return {success: true, pri: pri, pub: accountInfo.pub, address: accountInfo.address,aesPri:newAddressInfo.aesPri};
+    return {success: true, pri: pri, pub: accountInfo.pub, address: accountInfo.address, aesPri: newAddressInfo.aesPri};
   } else {
     return {success: false};
   }
@@ -123,10 +126,9 @@ export function chainIdNumber() {
  * @param type 0:地址列表，1:选中地址
  * @returns {*}
  */
-export function addressInfo(type) {
-  let chainNumber = 'chainId' + chainID();
-  let addressList = localStorage.hasOwnProperty(chainNumber) ? JSON.parse(localStorage.getItem(chainNumber)) : [];
-  if (addressList) {
+export function addressList(type) {
+  let addressList = localStorage.hasOwnProperty(chainIdNumber()) ? JSON.parse(localStorage.getItem(chainIdNumber())) : [];
+  if (addressList.length !== 0) {
     if (type === 0) {
       return addressList
     } else {
@@ -139,6 +141,17 @@ export function addressInfo(type) {
   } else {
     return addressList
   }
+}
+
+//地址信息写入localStorage
+export function localStorageByAddressInfo(newAddressInfo) {
+  let addressList = localStorage.hasOwnProperty(chainIdNumber()) ? JSON.parse(localStorage.getItem(chainIdNumber())) : [];
+  for (let item of addressList) {
+    item.selection = false;
+  }
+  newAddressInfo.selection = true;
+  addressList.push(newAddressInfo);
+  localStorage.setItem(chainIdNumber(), JSON.stringify(addressList))
 }
 
 /**
@@ -163,6 +176,39 @@ export function superLong(string, leng) {
     return string.substr(0, leng) + "...." + string.substr(string.length - leng, string.length);
   } else {
     return string;
+  }
+}
+
+/**
+ * 保留指定小数位数
+ * @param val 要处理的数据，Number | String
+ * @param len 保留小数位数，位数不足时，以0填充
+ * @param side 1|-1 对应 入|舍
+ * @returns {string|number}
+ */
+export function tofix(val, len, side) {
+  const numval = Number(val);
+  if (isNaN(numval)) return 0;
+  const str = val.toString();
+  if (str.indexOf('.') > -1) {
+    let numArr = str.split('.');
+    if (numArr[1].length > len) {
+      let tempnum = numval * Math.pow(10, len);
+      if (!side) {
+        return Number(val).toFixed(len)
+      } else if (side === 1) {
+        if (tempnum < 1) return (1 / Math.pow(10, len));
+        return (Math.ceil(tempnum) / Math.pow(10, len)).toFixed(len)
+      } else if (side === -1) {
+        return (Math.floor(tempnum) / Math.pow(10, len)).toFixed(len)
+      } else {
+        return Number(val.toFixed(len))
+      }
+    } else {
+      return Number(str).toFixed(len)
+    }
+  } else {
+    return Number(val).toFixed(len)
   }
 }
 

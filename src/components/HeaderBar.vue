@@ -76,7 +76,7 @@
        * @param key
        */
       handleSelect(key) {
-        console.log(key);
+        //console.log(key);
         this.navDrawer = false;
         if (key === 'home') {
           this.toUrl('home', '', 0);

@@ -20,11 +20,13 @@
     created() {
     },
     mounted() {
+      /*
       if (!localStorage.hasOwnProperty('accountInfo')) {
         this.$router.push({
           name: 'newAddress',
         })
       }
+      */
     },
     watch: {},
     computed: {},
@@ -41,7 +43,7 @@
   @import "./../../assets/css/base.less";
 
   ._app {
-    width: 360px;
-    height: 580px;
+    width: 25rem;
+    height: 35rem;
   }
 </style>

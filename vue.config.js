@@ -29,6 +29,10 @@ plugins.push({
   from: path.resolve("src/assets/img/icon.png"),
   to: `${path.resolve("dist")}/img/icon.png`
 });
+plugins.push({
+  from: path.resolve("src/background.js"),
+  to: `${path.resolve("dist")}/background.js`
+});
 
 module.exports = {
   pages: pagesObj,

@@ -26,13 +26,18 @@
     data() {
       return {
         accountInfo: {},//账户信息
+        clickId: document.getElementById('wave'),
       }
     },
     created() {
       this.init();
     },
     mounted() {
-
+      let ev = document.createEvent("HTMLEvents");
+      ev.initEvent("change", false, true);
+      this.clickId.dispatchEvent(ev);
+      console.info(this.clickId)
+      //this.clickId.onblur = this.clickIdClick();
     },
     destroyed() {
       this.accountInfo = {};
@@ -63,7 +68,16 @@
         this.accountInfo.allLock = allLock === 0 ? 0 : parseFloat(tofix((Number(divisionDecimals(allLock, 8)), 3, -1)));
         this.accountInfo.balance = parseFloat(tofix(Number(divisionDecimals(this.accountInfo.balance, 8)), 3, -1));
         console.info(this.accountInfo);
-      }
+      },
+
+      clickIdClick() {
+        console.info("wave")
+      },
+      /*this.clickId.onClick () {
+        console.info("wave")
+
+  }*/
+
     }
   }
 </script>

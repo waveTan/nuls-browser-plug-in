@@ -3,6 +3,10 @@
     "name": "NULS 浏览器插件",
     "description": "NULS浏览器插件",
     "version": "0.0.1",
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
     // 图标，一般偷懒全部用一个尺寸的也没问题
     "icons":{
         "16":"img/icon.png",

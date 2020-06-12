@@ -64,7 +64,7 @@
   import nuls from 'nuls-sdk-js'
   import {CHAIN_INFO} from './../../../../config'
   import {getAddressInfoByAddress} from './../../../../api/requestData'
-  import {passwordVerification, connect,localStorageByAddressInfo} from './../../../../api/util'
+  import {passwordVerification, connect, localStorageByAddressInfo} from './../../../../api/util'
   import Password from './../../../../components/PasswordBar'
 
   export default {
@@ -388,9 +388,13 @@
           .upload {
             width: 95%;
             margin: 0 auto;
-            .el-upload-dragger {
-              width: 340px;
+            .el-upload {
+              width: 100%;
+              .el-upload-dragger {
+                width: 100%;
+              }
             }
+
           }
         }
         .import-form {

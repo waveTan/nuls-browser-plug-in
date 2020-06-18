@@ -82,8 +82,7 @@
        */
       async addressInfoByAddress(address) {
         let newData = {aesPri: this.accountInfo.aesPri, pub: this.accountInfo.pub};
-        let newAddressInfo = await
-          getAddressInfoByAddress(address);
+        let newAddressInfo = await getAddressInfoByAddress(address);
         if (newAddressInfo.success) {
           this.accountInfo = {};
           newAddressInfo.data.balance = divisionDecimals(newAddressInfo.data.balance);

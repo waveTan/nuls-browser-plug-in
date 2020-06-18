@@ -1,22 +1,44 @@
 {
-    "manifest_version": 2,
-    "name": "NULS 浏览器插件",
-    "description": "NULS浏览器插件",
-    "version": "0.0.1",
-    "background": {
-        "scripts": ["background.js"],
-        "persistent": false
-    },
-    // 图标，一般偷懒全部用一个尺寸的也没问题
-    "icons":{
-        "16":"img/icon.png",
-        "48":"img/icon.png",
-        "128":"img/icon.png"
-    },
-    // 浏览器右上角图标设置，browser_action、page_action、app必须三选一
-    "options_page": "options.html",
-    "browser_action": {
-        "default_popup": "popup.html"
-    },
-    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "manifest_version": 2,
+  "name": "NULS 浏览器插件",
+  "description": "NULS浏览器插件",
+  "version": "0.0.1",
+  // 插件需要的权限
+  "permissions": [
+    "browsingData",
+    "tabs",
+    "storage",
+    "webRequestBlocking"
+  ],
+  // 浏览器按钮，此处定义了一个用户界面
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  // 需要直接注入页面的JS
+  "content_scripts":
+  [
+    {
+      // "<all_urls>" 表示匹配所有地址
+      "matches": ["<all_urls>"],
+      // 多个JS按顺序注入
+      "js": ["js/contentscript.js"]
+    }
+  ],
+  // 后台页面
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "externally_connectable": {
+    "matches": ["http://127.0.0.1:8848/*"]
+  },
+  "icons": {
+    "16": "img/icon.png",
+    "48": "img/icon.png",
+    "128": "img/icon.png"
+  },
+  "options_page": "options.html",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

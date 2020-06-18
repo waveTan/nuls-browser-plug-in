@@ -33,7 +33,10 @@ plugins.push({
   from: path.resolve("src/background.js"),
   to: `${path.resolve("dist")}/background.js`
 });
-
+plugins.push({
+  from: path.resolve("src/contentscript.js"),
+  to: `${path.resolve("dist")}/js/contentscript.js`
+});
 module.exports = {
   pages: pagesObj,
   configureWebpack: {

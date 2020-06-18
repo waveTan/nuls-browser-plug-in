@@ -15,6 +15,20 @@
     </div>
     <div class="transactions">
       <h6>交易记录</h6>
+      <div>
+        <el-table :data="txList" stripe border style="width: 100%">
+          <el-table-column prop="type" label="类型" width="50" align="center">
+          </el-table-column>
+          <el-table-column prop="txhash" label="Hash" min-width="80" align="center">
+          </el-table-column>
+          <el-table-column prop="amount" label="金额" width="110" align="center">
+          </el-table-column>
+          <el-table-column prop="state" label="状态" width="70" align="center">
+          </el-table-column>
+          <el-table-column prop="time" label="时间" width="80" align="center">
+          </el-table-column>
+        </el-table>
+      </div>
     </div>
   </div>
 </template>
@@ -26,17 +40,22 @@
     data() {
       return {
         accountInfo: {},//账户信息
-        clickId: document.getElementById('wave'),
+        txList: [
+          {type: '转账', txhash: 'sd42...sf53', amount: '23215.235', state: '确认中', time: '15:20:58'},
+          {type: '跨链', txhash: 'sd42...sf53', amount: '362315.235', state: '已确认', time: '15:20:58'},
+          {type: '别名', txhash: 'sd42...sf53', amount: '1.001', state: '已确认', time: '15:20:58'},
+          {type: '共识', txhash: 'sd42...sf53', amount: '2000', state: '已确认', time: '15:20:58'}
+        ],//交易记录列表
       }
     },
     created() {
       this.init();
     },
     mounted() {
-      let ev = document.createEvent("HTMLEvents");
+      /*let ev = document.createEvent("HTMLEvents");
       ev.initEvent("change", false, true);
       this.clickId.dispatchEvent(ev);
-      console.info(this.clickId)
+      console.info(this.clickId)*/
       //this.clickId.onblur = this.clickIdClick();
     },
     destroyed() {
@@ -55,8 +74,8 @@
 
       //初始数据
       init() {
-        console.info("初始数据");
-        console.info(this.$store.getters.getSelectAddress);
+        //console.info("初始数据");
+        //console.info(this.$store.getters.getSelectAddress);
         this.accountInfo = this.$store.getters.getSelectAddress;
         if (!this.accountInfo.address) {
           this.$router.push({
@@ -67,7 +86,7 @@
         let allLock = Number(Plus(this.accountInfo.consensusLock, this.accountInfo.timeLock));
         this.accountInfo.allLock = allLock === 0 ? 0 : parseFloat(tofix((Number(divisionDecimals(allLock, 8)), 3, -1)));
         this.accountInfo.balance = parseFloat(tofix(Number(divisionDecimals(this.accountInfo.balance, 8)), 3, -1));
-        console.info(this.accountInfo);
+        //console.info(this.accountInfo);
       },
 
       clickIdClick() {

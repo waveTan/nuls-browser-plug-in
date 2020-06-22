@@ -1,7 +1,10 @@
 <template>
   <div class="_bottom">
     <div class="_fl">
-      节点：http://192.168.1.118:17003
+      <el-select v-model="urlPath" placeholder="请选择">
+        <el-option v-for="item in urlList" :key="item.key" :label="item.url +'('+item.name +')'" :value="item.url">
+        </el-option>
+      </el-select>
     </div>
     <div class="_fr">高度：{{getInfo.networkHeight}}/{{getInfo.localHeight}}</div>
   </div>
@@ -15,7 +18,12 @@
   export default {
     data() {
       return {
-        urlPath: '',//当前路径
+        urlList: [
+          {key: '0', url: 'https://beta.wallet.nuls.io/api', name: '官方'},
+          {key: '1', url: 'http://192.168.1.88', name: '测试'},
+          {key: '2', url: 'http://192.168.1.168', name: '自己的'}
+        ],
+        urlPath: 'https://beta.wallet.nuls.io/api',//当前路径
         getInfo: {},//网络信息
       };
     },
@@ -96,5 +104,19 @@
     padding: 0 10px;
     position: fixed;
     bottom: 0;
+    .el-select{
+      .el-input{
+        .el-input__inner{
+          height: 25px;
+          line-height: 25px;
+          padding: 0;
+          border: 0;
+          width: 200px;
+        }
+        .el-input__suffix{
+          display: none;
+        }
+      }
+    }
   }
 </style>

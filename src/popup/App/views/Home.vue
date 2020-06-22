@@ -10,12 +10,16 @@
         <div class="assets_info">可用: {{accountInfo.balance}}</div>
       </div>
     </div>
+    <div class="_btn _cb">
+      <el-button size="mini" @click="toUrl('deposit','',0)">存入</el-button>
+      <el-button size="mini" @click="toUrl('withdraw','',0)">发送</el-button>
+    </div>
     <div class="signature_list">
-      <h6>签名列表</h6>
+      <h6 class="_title">签名列表</h6>
     </div>
     <div class="transactions">
-      <h6>交易记录</h6>
       <div>
+      <h6 class="_title">交易记录</h6>
         <el-table :data="txList" stripe border style="width: 100%">
           <el-table-column prop="type" label="类型" width="50" align="center">
           </el-table-column>
@@ -52,11 +56,6 @@
       this.init();
     },
     mounted() {
-      /*let ev = document.createEvent("HTMLEvents");
-      ev.initEvent("change", false, true);
-      this.clickId.dispatchEvent(ev);
-      console.info(this.clickId)*/
-      //this.clickId.onblur = this.clickIdClick();
     },
     destroyed() {
       this.accountInfo = {};
@@ -89,14 +88,19 @@
         //console.info(this.accountInfo);
       },
 
-      clickIdClick() {
-        console.info("wave")
-      },
-      /*this.clickId.onClick () {
-        console.info("wave")
-
-  }*/
-
+      /**
+       * url 连接
+       * @param name
+       * @param parameter
+       * @param type 0 路由 1 外部
+       */
+      toUrl(name, parameter, type = 0) {
+        let newQuery = {};
+        this.$router.push({
+          name: name,
+          query: newQuery
+        })
+      }
     }
   }
 </script>
@@ -126,6 +130,17 @@
           text-align: center;
         }
       }
+    }
+    ._btn {
+      text-align: center;
+      .el-button--mini {
+        width: 100px;
+      }
+    }
+    ._title {
+      font-size: 0.7rem;
+      padding: 0 0 0 0.5rem;
+      line-height: 1.2rem;
     }
     .signature_list {
       margin: 0.5rem 0 0.5rem 0;

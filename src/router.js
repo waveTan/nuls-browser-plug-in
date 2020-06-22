@@ -13,14 +13,29 @@ export default new Router({
   mode: 'history',
   routes: [
     {
+      path: '/*',
+      name: 'home',
+      component: resolve => require(['./popup/App/views/Home.vue'], resolve)
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: resolve => require(['./popup/App/views/user/Login.vue'], resolve)
+    },
+    {
       path: '/',
       name: 'home',
       component: resolve => require(['./popup/App/views/Home.vue'], resolve)
     },
     {
-      path: '/*',
-      name: 'home',
-      component: resolve => require(['./popup/App/views/Home.vue'], resolve)
+      path: '/deposit',
+      name: 'deposit',
+      component: resolve => require(['./popup/App/views/transaction/Deposit.vue'], resolve)
+    },
+    {
+      path: '/withdraw',
+      name: 'withdraw',
+      component: resolve => require(['./popup/App/views/transaction/Withdraw.vue'], resolve)
     },
     {
       path: '/NewAddress',

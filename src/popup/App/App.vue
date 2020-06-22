@@ -41,7 +41,6 @@
 
 <style lang="less">
   @import "./../../assets/css/base.less";
-
   ._app {
     width: 25rem;
     height: 35rem;
